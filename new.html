@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap 5 Page Layouts - Layout Hub</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #6c5ce7;
+            --secondary-color: #a29bfe;
+            --tertiary-color: #e84393;
+            --light-bg: #f5f6fa;
+            --dark-text: #2d3436;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            scroll-behavior: smooth;
+        }
+
+        .section-padding {
+            padding: 4rem 0;
+        }
+
+        .card {
+            border: none;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-custom {
+            background-color: var(--primary-color);
+            border: none;
+            color: white;
+            padding: 0.75rem 2.5rem;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: var(--secondary-color);
+            color: var(--dark-text);
+            transform: scale(1.05);
+        }
+
+        .tab-content .tab-pane {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 1.5rem;
+        }
+
+        .nav-tabs .nav-link {
+            border: none;
+            border-radius: 1rem 1rem 0 0;
+            color: var(--dark-text);
+            transition: all 0.3s ease;
+        }
+
+        .nav-tabs .nav-link.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .accordion-item, .accordion-button {
+            border: none;
+            border-radius: 1rem;
+            box-shadow: none;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background-color: var(--secondary-color);
+            color: white;
+            font-weight: bold;
+        }
+        
+        .offcanvas.show {
+            transform: translateX(0);
+        }
+
+        .brand-name {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        /* Footer Specific Styles */
+        .footer-link {
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+
+        .footer-link:hover {
+            color: #ffffff;
+        }
+
+        .footer-icon {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+
+        .footer-icon:hover {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="https://images.pexels.com/photos/935979/pexels-photo-935979.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="rounded-pill me-2" alt="Layout Hub Logo" style="width: 40px; height: 40px; object-fit: cover;">
+                <span class="brand-name">Layout Hub</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#center-stage">Center Stage</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#grid-of-equals">Grid of Equals</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#module-tabs">Tabs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#accordion-faqs">Accordion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#collapsible-panels">Collapsible</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#diagonal-balance">Diagonal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#liquid-layout">Footer</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="center-stage" class="min-vh-100 d-flex align-items-center justify-content-center text-center bg-dark text-white p-4" style="background-image: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=2071&auto=format&fit=crop'); background-size: cover; background-position: center;">
+        <div class="container">
+            <h1 class="display-3 fw-bold mb-4">Center Stage Layout</h1>
+            <p class="lead mb-5">This hero section places content at the perfect center, vertically and horizontally.</p>
+            <a href="#" class="btn btn-lg btn-light rounded-pill px-5">Get Started</a>
+        </div>
+    </section>
+
+    <section id="grid-of-equals" class="section-padding bg-light">
+        <div class="container">
+            <h2 class="display-5 text-center fw-bold mb-5">Grid of Equals</h2>
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                <div class="col">
+                    <div class="card h-100 p-4">
+                        <div class="card-body d-flex flex-column align-items-center text-center">
+                            <h5 class="card-title fw-bold">Modular Framework</h5>
+                            <p class="card-text">Our platform is built on a modular, component-based architecture for maximum flexibility and reusability.</p>
+                            <a href="#" class="btn btn-custom mt-auto">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 p-4">
+                        <div class="card-body d-flex flex-column align-items-center text-center">
+                            <h5 class="card-title fw-bold">Unified Data Layer</h5>
+                            <p class="card-text">We leverage a single source of truth for all your data, ensuring consistency and real-time synchronization.</p>
+                            <a href="#" class="btn btn-custom mt-auto">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 p-4">
+                        <div class="card-body d-flex flex-column align-items-center text-center">
+                            <h5 class="card-title fw-bold">Scalable Performance</h5>
+                            <p class="card-text">Engineered for high-volume traffic, our solutions scale effortlessly to meet your growing business needs.</p>
+                            <a href="#" class="btn btn-custom mt-auto">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 p-4">
+                        <div class="card-body d-flex flex-column align-items-center text-center">
+                            <h5 class="card-title fw-bold">Intuitive User Interface</h5>
+                            <p class="card-text">A clean and intuitive UI reduces the learning curve and boosts your team's productivity from day one.</p>
+                            <a href="#" class="btn btn-custom mt-auto">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="module-tabs" class="section-padding bg-white">
+        <div class="container">
+            <h2 class="display-5 text-center fw-bold mb-5">Module Tabs</h2>
+            <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="about-tab" data-bs-toggle="tab" data-bs-target="#about-content" type="button" role="tab" aria-controls="about-content" aria-selected="true">About Us</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="services-tab" data-bs-toggle="tab" data-bs-target="#services-content" type="button" role="tab" aria-controls="services-content" aria-selected="false">Services</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-content" type="button" role="tab" aria-controls="contact-content" aria-selected="false">Contact</button>
+                </li>
+            </ul>
+            <div class="tab-content mt-4" id="myTabContent">
+                <div class="tab-pane fade show active" id="about-content" role="tabpanel" aria-labelledby="about-tab">
+                    <h4 class="fw-bold mb-3">Our Story</h4>
+                    <p>Founded in 2021, we set out to revolutionize the way businesses interact with their data. Our team of passionate engineers and designers is dedicated to building elegant, powerful solutions that solve real-world problems. We believe in transparency, innovation, and unwavering support for our clients.</p>
+                </div>
+                <div class="tab-pane fade" id="services-content" role="tabpanel" aria-labelledby="services-tab">
+                    <h4 class="fw-bold mb-3">What We Offer</h4>
+                    <p>We specialize in a variety of services, including custom software development, cloud infrastructure management, and data analytics. Our agile approach ensures that we deliver high-quality products on time and within budget, with continuous feedback and collaboration at every step.</p>
+                </div>
+                <div class="tab-pane fade" id="contact-content" role="tabpanel" aria-labelledby="contact-tab">
+                    <h4 class="fw-bold mb-3">Get in Touch</h4>
+                    <p>Ready to start a conversation? We're here to help. Reach out to our team via email at <a href="mailto:info@example.com">info@example.com</a> or give us a call at <a href="tel:123-456-7890">123-456-7890</a>. We'd love to hear about your next big project.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="accordion-faqs" class="section-padding bg-light">
+        <div class="container">
+            <h2 class="display-5 text-center fw-bold mb-5">FAQ Accordion</h2>
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            How do I get started with your service?
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Getting started is easy! Simply contact our sales team to schedule a free consultation. We'll walk you through our process and create a custom plan tailored to your needs.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            What is your pricing model?
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Our pricing is flexible and depends on the scope of your project. We offer transparent, competitive rates and can provide a detailed quote after our initial discussion.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Do you provide ongoing support?
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Yes, we offer comprehensive support plans to ensure your solution runs smoothly. Our team is available 24/7 to address any issues or questions you may have.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="collapsible-panels" class="section-padding bg-white text-center">
+        <div class="container">
+            <h2 class="display-5 fw-bold mb-5">Collapsible Menu Panel</h2>
+            <button class="btn btn-custom btn-lg" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                Toggle Sidebar
+            </button>
+        </div>
+    </section>
+
+    <div class="offcanvas offcanvas-start bg-light" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title fw-bold" id="offcanvasExampleLabel">Menu</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#center-stage">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#grid-of-equals">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#diagonal-balance">Settings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <section id="diagonal-balance" class="section-padding" style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);">
+        <div class="container">
+            <h2 class="display-5 text-center fw-bold mb-5 pb-3">Diagonal Balance</h2>
+            <div class="row g-lg-5 g-4 align-items-center">
+                
+                <div class="col-lg-6 align-self-lg-start">
+                    <div class="text-center text-lg-start">
+                        <img src="https://placehold.co/500x500/a29bfe/ffffff?text=Dynamic+Image" class="img-fluid rounded-4 shadow-lg" alt="Diagonal Balance Image" style="max-width: 85%;">
+                    </div>
+                </div>
+    
+                <div class="col-lg-6 align-self-lg-end">
+                    <div class="card p-4 p-lg-5 shadow-lg border-0">
+                        <div class="card-body">
+                            <h3 class="card-title fw-bold mb-3" style="color: var(--primary-color);">A Creative Approach to Layout</h3>
+                            <p class="card-text text-secondary">This layout creates a visually engaging flow, guiding the user's eye from the top-left image to the bottom-right text. It's perfect for showcasing key features or concepts in a memorable way.</p>
+                            <a href="#" class="btn btn-custom mt-3">Explore Design</a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <footer id="liquid-layout" class="pt-5 pb-4 bg-dark text-white">
+        <div class="container-fluid px-lg-5">
+            <h2 class="visually-hidden">Footer</h2>
+            <div class="row gy-4 text-center text-md-start">
+                <div class="col-lg-3 col-md-12 mb-3">
+                    <a class="navbar-brand d-flex align-items-center justify-content-center justify-content-md-start" href="#">
+                        <img src="https://images.pexels.com/photos/935979/pexels-photo-935979.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="rounded-pill me-2" alt="Layout Hub Logo" style="width: 40px; height: 40px; object-fit: cover;">
+                        <span class="fs-4" style="font-family: 'Playfair Display', serif; color: white;">Layout Hub</span>
+                    </a>
+                    <p class="text-white-50 mt-2 small">Your blueprint for modern, responsive digital experiences.</p>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5 class="fw-bold mb-3">Product</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><a href="#" class="footer-link">Features</a></li>
+                                <li class="mb-2"><a href="#" class="footer-link">Pricing</a></li>
+                                <li class="mb-2"><a href="#" class="footer-link">Updates</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h5 class="fw-bold mb-3">Company</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><a href="#" class="footer-link">About</a></li>
+                                <li class="mb-2"><a href="#" class="footer-link">Careers</a></li>
+                                <li class="mb-2"><a href="#" class="footer-link">Blog</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h5 class="fw-bold mb-3">Resources</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><a href="#" class="footer-link">Support</a></li>
+                                <li class="mb-2"><a href="#" class="footer-link">Docs</a></li>
+                                <li class="mb-2"><a href="#" class="footer-link">Partners</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-12">
+                     <h5 class="fw-bold mb-3">Stay Updated</h5>
+                     <p class="text-white-50 small">Get the latest news and special offers.</p>
+                     <form>
+                         <div class="input-group">
+                             <input type="email" class="form-control" placeholder="Enter your email" aria-label="Enter your email">
+                             <button class="btn btn-primary" type="button" style="background-color: var(--primary-color); border-color: var(--primary-color);">Go</button>
+                         </div>
+                     </form>
+                </div>
+            </div>
+
+            <hr class="my-4">
+
+            <div class="row d-flex align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <small class="text-white-50">&copy; 2025 Layout Hub. All rights reserved.</small>
+                </div>
+                <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+                    <a href="#" class="footer-icon me-3"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#" class="footer-icon me-3"><i class="bi bi-linkedin"></i></a>
+                    <a href="#" class="footer-icon me-3"><i class="bi bi-github"></i></a>
+                    <a href="#" class="footer-icon"><i class="bi bi-facebook"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>
